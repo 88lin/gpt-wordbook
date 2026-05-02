@@ -1,152 +1,221 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import matter from 'gray-matter';
+import fs from "fs";
+import path from "path";
+import { fileURLToPath, pathToFileURL } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-/**
- * 生成按字母分组的侧边栏配置
- * 性能优化版本：只显示字母索引，不显示 8000+ 单词详情
- * 
- * 优化策略：
- * 1. 侧边栏只显示 A-Z 字母链接到索引页
- * 2. 减少 HTML 体积，提升页面加载速度
- * 3. 每个字母索引页单独展示该字母下的所有单词
- */
+const CACHE_VERSION = 1;
+const TITLE_READ_SIZE = 2048;
+const wordsDir = path.resolve(__dirname, "./src/content/docs/words");
+const indexDir = path.resolve(__dirname, "./src/content/docs/words-index");
+const cacheDir = path.resolve(__dirname, "./.cache");
+const cacheFilePath = path.join(cacheDir, "word-index-cache.json");
 
-const wordsDir = path.resolve(__dirname, './src/content/docs/words');
-const indexDir = path.resolve(__dirname, './src/content/docs/words-index');
+function ensureDirSync(dirPath) {
+  fs.mkdirSync(dirPath, { recursive: true });
+}
 
-/**
- * 读取所有单词文件并按首字母分组
- */
-function getGroupedWords(verbose = false) {
-  if (!fs.existsSync(wordsDir)) {
-    if (verbose) console.error(`错误：找不到目录 ${wordsDir}`);
-    return {};
+function readJsonFile(filePath) {
+  if (!fs.existsSync(filePath)) {
+    return null;
   }
 
-  // 读取所有 .mdx 文件
-  const files = fs.readdirSync(wordsDir)
-    .filter(file => file.endsWith('.mdx'))
-    .sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }));
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  } catch {
+    return null;
+  }
+}
 
-  if (verbose) console.log(`找到 ${files.length} 个单词文件`);
+function writeFileIfChanged(filePath, content) {
+  const currentContent = fs.existsSync(filePath)
+    ? fs.readFileSync(filePath, "utf-8")
+    : null;
 
-  // 按首字母分组
+  if (currentContent === content) {
+    return false;
+  }
+
+  fs.writeFileSync(filePath, content, "utf-8");
+  return true;
+}
+
+function normalizeTitle(rawTitle) {
+  const trimmedTitle = rawTitle.trim();
+
+  if (
+    trimmedTitle.length >= 2 &&
+    ((trimmedTitle.startsWith('"') && trimmedTitle.endsWith('"')) ||
+      (trimmedTitle.startsWith("'") && trimmedTitle.endsWith("'")))
+  ) {
+    return trimmedTitle.slice(1, -1).trim();
+  }
+
+  return trimmedTitle;
+}
+
+function getFallbackDisplayName(fileName) {
+  if (!fileName) {
+    return fileName;
+  }
+
+  return fileName
+    .split("-")
+    .filter(Boolean)
+    .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+    .join("-");
+}
+
+function extractTitle(filePath, fallbackTitle) {
+  const fileDescriptor = fs.openSync(filePath, "r");
+  const buffer = Buffer.alloc(TITLE_READ_SIZE);
+
+  try {
+    const bytesRead = fs.readSync(fileDescriptor, buffer, 0, buffer.length, 0);
+    const preview = buffer.toString("utf-8", 0, bytesRead);
+    const titleMatch = preview.match(/^\s*title:\s*(.+)\s*$/m);
+
+    if (!titleMatch) {
+      return fallbackTitle;
+    }
+
+    const normalizedTitle = normalizeTitle(titleMatch[1]);
+    return normalizedTitle || fallbackTitle;
+  } finally {
+    fs.closeSync(fileDescriptor);
+  }
+}
+
+function listWordFiles() {
+  if (!fs.existsSync(wordsDir)) {
+    return [];
+  }
+
+  return fs
+    .readdirSync(wordsDir, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".mdx"))
+    .map((entry) => {
+      const filePath = path.join(wordsDir, entry.name);
+      const stats = fs.statSync(filePath);
+
+      return {
+        fileName: entry.name.slice(0, -4),
+        filePath,
+        size: stats.size,
+        mtimeMs: Math.trunc(stats.mtimeMs),
+      };
+    })
+    .sort((left, right) =>
+      left.fileName.localeCompare(right.fileName, "en", { sensitivity: "base" })
+    );
+}
+
+function compareLetters(left, right) {
+  if (left === "#" && right === "#") {
+    return 0;
+  }
+
+  if (left === "#") {
+    return 1;
+  }
+
+  if (right === "#") {
+    return -1;
+  }
+
+  return left.localeCompare(right, "en", { sensitivity: "base" });
+}
+
+function buildGroupedWords(wordFiles, verbose = false) {
   const groupedWords = {};
-  
-  for (const file of files) {
-    const fileName = file.replace('.mdx', '');
-    const filePath = path.join(wordsDir, file);
-    
-    // 读取文件的 frontmatter 以获取 title
-    let displayName = fileName;
-    try {
-      const fileContent = fs.readFileSync(filePath, 'utf-8');
-      const { data } = matter(fileContent);
-      if (data.title) {
-        displayName = data.title;
-      }
-    } catch (error) {
-      if (verbose) console.warn(`警告：无法读取文件 ${file} 的 frontmatter`);
+
+  for (const wordFile of wordFiles) {
+    const fallbackTitle = getFallbackDisplayName(wordFile.fileName);
+    const displayName = extractTitle(wordFile.filePath, fallbackTitle);
+    const leadingCharacter = displayName.charAt(0).toUpperCase();
+    const groupKey = /^[A-Z]$/.test(leadingCharacter) ? leadingCharacter : "#";
+
+    if (!groupedWords[groupKey]) {
+      groupedWords[groupKey] = [];
     }
-    
-    // 获取第一个字符并转为大写
-    const firstChar = displayName.charAt(0).toUpperCase();
-    
-    // 只处理 A-Z 的字母
-    if (/^[A-Z]$/.test(firstChar)) {
-      if (!groupedWords[firstChar]) {
-        groupedWords[firstChar] = [];
-      }
-      groupedWords[firstChar].push({ fileName, displayName });
-    } else {
-      // 非字母开头的放到特殊分组
-      if (!groupedWords['#']) {
-        groupedWords['#'] = [];
-      }
-      groupedWords['#'].push({ fileName, displayName });
-    }
+
+    groupedWords[groupKey].push({
+      fileName: wordFile.fileName,
+      displayName,
+    });
+  }
+
+  if (verbose) {
+    console.log(
+      `Indexed ${wordFiles.length} word files into ${
+        Object.keys(groupedWords).length
+      } groups.`
+    );
   }
 
   return groupedWords;
 }
 
-/**
- * 生成简化的侧边栏配置（只显示字母索引）
- */
-function generateSidebarConfig(verbose = false) {
-  const groupedWords = getGroupedWords(verbose);
-  
-  // 生成简化的侧边栏：只显示字母索引
-  const sidebarConfig = [
+function generateSidebarConfigFromGroups(groupedWords) {
+  const letters = Object.keys(groupedWords).sort(compareLetters);
+
+  return [
     {
-      label: '📖 单词索引',
-      items: []
-    }
+      label: "📖 单词索引",
+      items: letters.map((letter) => {
+        const label = letter === "#" ? "符号/数字" : letter;
+
+        return {
+          label: `${label} (${groupedWords[letter].length} 词)`,
+          link: `/words-index/${
+            letter === "#" ? "special" : letter.toLowerCase()
+          }/`,
+        };
+      }),
+    },
   ];
-  
-  // 按字母顺序生成字母索引链接
-  const letters = Object.keys(groupedWords).sort();
-  
-  for (const letter of letters) {
-    const words = groupedWords[letter];
-    const label = letter === '#' ? '符号/数字' : letter;
-    
-    sidebarConfig[0].items.push({
-      label: `${label} (${words.length} 词)`,
-      link: `/words-index/${letter.toLowerCase()}/`
-    });
-  }
-
-  if (verbose) {
-    console.log(`生成了简化的侧边栏配置，包含 ${letters.length} 个字母分组`);
-  }
-
-  return sidebarConfig;
 }
 
-/**
- * 生成字母索引页面
- */
-function generateIndexPages(verbose = false) {
-  const groupedWords = getGroupedWords(verbose);
-  
-  // 确保索引目录存在
-  if (!fs.existsSync(indexDir)) {
-    fs.mkdirSync(indexDir, { recursive: true });
-  }
-  
-  const letters = Object.keys(groupedWords).sort();
-  
-  for (const letter of letters) {
-    const words = groupedWords[letter];
-    const label = letter === '#' ? '符号/数字' : letter;
-    const fileName = letter.toLowerCase() === '#' ? 'special' : letter.toLowerCase();
-    const filePath = path.join(indexDir, `${fileName}.mdx`);
-    
-    // 生成索引页面内容
-    const content = `---
+function getIndexLabel(letter) {
+  return letter === "#" ? "符号/数字" : letter;
+}
+
+function getIndexDescription(letter, count) {
+  return `${getIndexLabel(letter)} 开头的所有单词列表（共 ${count} 个）`;
+}
+
+function getIndexFileName(letter) {
+  return letter === "#" ? "special" : letter.toLowerCase();
+}
+
+function renderIndexPage(letter, words) {
+  const label = getIndexLabel(letter);
+  const description = getIndexDescription(letter, words.length);
+  const order = letter === "#" ? 999 : letter.charCodeAt(0);
+  const wordLinks = words
+    .map((word) => `- [${word.displayName}](/words/${word.fileName}/)`)
+    .join("\n");
+
+  return `---
 title: ${label} - 单词索引
-description: ${label} 开头的所有单词列表（共 ${words.length} 个）
+description: ${description}
+tableOfContents: false
 sidebar:
   hidden: false
-  order: ${letter === '#' ? 999 : letter.charCodeAt(0)}
+  order: ${order}
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
-import AlphabetIndex from '../../../components/AlphabetIndex.astro';
+import { Card, CardGrid } from "@astrojs/starlight/components";
+import AlphabetIndex from "../../../components/AlphabetIndex.astro";
 
 ## ${label} 开头的单词
 
 共收录 **${words.length}** 个单词
 
-<div style="columns: 2; column-gap: 2rem; margin-top: 2rem;">
+<div id="word-index" class="columns-2 md:columns-3 lg:columns-5 gap-6 mt-8">
 
-${words.map(word => `- [${word.displayName}](/words/${word.fileName}/)`).join('\n')}
+${wordLinks}
 
 </div>
 
@@ -154,30 +223,189 @@ ${words.map(word => `- [${word.displayName}](/words/${word.fileName}/)`).join('\
 
 <AlphabetIndex />
 `;
-    
-    fs.writeFileSync(filePath, content, 'utf-8');
-    
-    if (verbose) {
-      console.log(`✓ 生成索引页: ${fileName}.mdx (${words.length} 个单词)`);
+}
+
+function getExpectedIndexFiles(groupedWords) {
+  return Object.keys(groupedWords)
+    .sort(compareLetters)
+    .map((letter) => `${getIndexFileName(letter)}.mdx`);
+}
+
+function syncIndexPages(groupedWords, verbose = false) {
+  ensureDirSync(indexDir);
+
+  const expectedIndexFiles = new Set(getExpectedIndexFiles(groupedWords));
+  const existingIndexFiles = fs
+    .readdirSync(indexDir, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".mdx"))
+    .map((entry) => entry.name);
+
+  for (const existingIndexFile of existingIndexFiles) {
+    if (!expectedIndexFiles.has(existingIndexFile)) {
+      fs.unlinkSync(path.join(indexDir, existingIndexFile));
+
+      if (verbose) {
+        console.log(`Removed stale index page: ${existingIndexFile}`);
+      }
     }
   }
-  
-  if (verbose) {
-    console.log(`\n成功生成 ${letters.length} 个字母索引页面`);
+
+  for (const letter of Object.keys(groupedWords).sort(compareLetters)) {
+    const fileName = `${getIndexFileName(letter)}.mdx`;
+    const filePath = path.join(indexDir, fileName);
+    const didWrite = writeFileIfChanged(
+      filePath,
+      renderIndexPage(letter, groupedWords[letter])
+    );
+
+    if (verbose && didWrite) {
+      console.log(`Updated index page: ${fileName}`);
+    }
   }
 }
 
-// 当作为模块导入时，不输出日志；当直接运行时，输出详细日志
-const isDirectRun = import.meta.url === `file://${process.argv[1]}`;
+function isCacheFresh(cache, wordFiles) {
+  if (
+    !cache ||
+    cache.version !== CACHE_VERSION ||
+    !Array.isArray(cache.wordFiles)
+  ) {
+    return false;
+  }
 
-if (isDirectRun) {
-  console.log('🚀 开始生成侧边栏配置和索引页面...\n');
-  generateIndexPages(true);
-  console.log('\n📊 生成侧边栏配置...\n');
+  if (cache.wordFiles.length !== wordFiles.length) {
+    return false;
+  }
+
+  return wordFiles.every((wordFile, index) => {
+    const cachedFile = cache.wordFiles[index];
+
+    return (
+      cachedFile &&
+      cachedFile.fileName === wordFile.fileName &&
+      cachedFile.size === wordFile.size &&
+      cachedFile.mtimeMs === wordFile.mtimeMs
+    );
+  });
 }
 
-const sidebarConfig = generateSidebarConfig(isDirectRun);
+function hasAllIndexPages(indexFiles) {
+  if (!Array.isArray(indexFiles) || indexFiles.length === 0) {
+    return false;
+  }
+
+  return indexFiles.every((indexFile) =>
+    fs.existsSync(path.join(indexDir, indexFile))
+  );
+}
+
+function writeCache(cachePayload) {
+  ensureDirSync(cacheDir);
+  fs.writeFileSync(
+    cacheFilePath,
+    `${JSON.stringify(cachePayload, null, 2)}\n`,
+    "utf-8"
+  );
+}
+
+function buildArtifacts(wordFiles, verbose = false) {
+  const groupedWords = buildGroupedWords(wordFiles, verbose);
+  const sidebarConfig = generateSidebarConfigFromGroups(groupedWords);
+  const indexFiles = getExpectedIndexFiles(groupedWords);
+
+  syncIndexPages(groupedWords, verbose);
+
+  const cachePayload = {
+    version: CACHE_VERSION,
+    generatedAt: new Date().toISOString(),
+    wordFiles: wordFiles.map(({ fileName, size, mtimeMs }) => ({
+      fileName,
+      size,
+      mtimeMs,
+    })),
+    groupedWords,
+    sidebarConfig,
+    indexFiles,
+  };
+
+  writeCache(cachePayload);
+  return cachePayload;
+}
+
+function ensureWordIndexArtifacts(options = {}) {
+  const { verbose = false } = options;
+
+  if (!fs.existsSync(wordsDir)) {
+    if (verbose) {
+      console.error(`Word directory not found: ${wordsDir}`);
+    }
+
+    return {
+      version: CACHE_VERSION,
+      generatedAt: new Date().toISOString(),
+      wordFiles: [],
+      groupedWords: {},
+      sidebarConfig: [],
+      indexFiles: [],
+    };
+  }
+
+  const wordFiles = listWordFiles();
+  const cachedPayload = readJsonFile(cacheFilePath);
+
+  if (
+    isCacheFresh(cachedPayload, wordFiles) &&
+    hasAllIndexPages(cachedPayload.indexFiles)
+  ) {
+    if (verbose) {
+      console.log(
+        `Word index cache is fresh for ${wordFiles.length} files. Skipping regeneration.`
+      );
+    }
+
+    return cachedPayload;
+  }
+
+  if (verbose) {
+    console.log(
+      `Rebuilding word index artifacts for ${wordFiles.length} files...`
+    );
+  }
+
+  return buildArtifacts(wordFiles, verbose);
+}
+
+function loadSidebarConfig() {
+  const cachedPayload = readJsonFile(cacheFilePath);
+
+  if (
+    cachedPayload?.version === CACHE_VERSION &&
+    Array.isArray(cachedPayload.sidebarConfig) &&
+    hasAllIndexPages(cachedPayload.indexFiles)
+  ) {
+    return cachedPayload.sidebarConfig;
+  }
+
+  return ensureWordIndexArtifacts().sidebarConfig;
+}
+
+function getGroupedWords(verbose = false) {
+  return ensureWordIndexArtifacts({ verbose }).groupedWords;
+}
+
+function generateIndexPages(verbose = false) {
+  ensureWordIndexArtifacts({ verbose });
+}
+
+const isDirectRun =
+  typeof process.argv[1] === "string" &&
+  import.meta.url === pathToFileURL(process.argv[1]).href;
+
+if (isDirectRun) {
+  ensureWordIndexArtifacts({ verbose: true });
+}
+
+const sidebarConfig = loadSidebarConfig();
 
 export default sidebarConfig;
-export { getGroupedWords, generateIndexPages };
-
+export { ensureWordIndexArtifacts, generateIndexPages, getGroupedWords };

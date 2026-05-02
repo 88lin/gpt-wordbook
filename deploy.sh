@@ -1,15 +1,15 @@
 #!/usr/bin/env sh
 
-# 确保脚本抛出遇到的错误
+# Exit on the first failure.
 set -e
 
-# 生成静态文件
-npm run build
+# Build the full release bundle.
+npm run build:release
 
-# 进入生成的文件夹
+# Enter the generated output directory.
 cd ./dist
 
-# 如果是发布到自定义域名
+# Write the custom domain record.
 echo 'word.lovejade.cn' > CNAME
 
 git init
