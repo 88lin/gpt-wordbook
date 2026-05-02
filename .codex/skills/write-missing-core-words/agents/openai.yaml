@@ -1,0 +1,3 @@
+interface:
+  display_name: "Write Missing Core Words"
+  short_description: "Batch author missing word MDX entries for gpt-wordbook"
