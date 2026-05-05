@@ -5,6 +5,7 @@
   "version": "2.0.0",
   "scripts": {
     "prepare:words": "node generate-sidebar.js",
+    "prepare:pagefind-exclusions": "node scripts/mark-pagefind-exclusions.mjs",
     "dev": "node generate-sidebar.js && WORDBOOK_BUILD_PROFILE=local astro dev",
     "start": "node generate-sidebar.js && WORDBOOK_BUILD_PROFILE=local astro dev",
     "check": "node generate-sidebar.js && WORDBOOK_BUILD_PROFILE=release NODE_OPTIONS=--max-old-space-size=8192 astro check",
