@@ -174,6 +174,41 @@ pnpm build
 pnpm preview
 ```
 
+### Typesense 搜索配置
+
+项目使用 `starlight-docsearch-typesense` 接入 Typesense。生产环境默认走 Cloudflare Pages Function 同源代理 `/typesense`，前端不会暴露真实 Typesense key；本地开发可以按需直连 Typesense。
+
+先基于 Typesense bootstrap/admin key 创建一个只读搜索 key：
+
+```bash
+curl -X POST "${TYPESENSE_ORIGIN}/keys" \
+  -H "X-TYPESENSE-API-KEY: ${TYPESENSE_API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{"description":"GPT Wordbook public search","actions":["documents:search"],"collections":["docs"]}'
+```
+
+Cloudflare Pages 需要配置这些环境变量：
+
+```bash
+PUBLIC_SITE_URL=https://word.lovejade.cn
+TYPESENSE_COLLECTION_NAME=docs
+TYPESENSE_USE_PROXY=true
+TYPESENSE_PROXY_PATH=/typesense
+TYPESENSE_ORIGIN=https://typesense.yuxuanda.cn
+TYPESENSE_SEARCH_API_KEY=<search-only key>
+TYPESENSE_PROXY_ALLOWED_ORIGINS=https://word.lovejade.cn
+```
+
+本地如需直连 Typesense，可在 `.env` 中配置：
+
+```bash
+TYPESENSE_USE_PROXY=false
+TYPESENSE_NODE_URL=https://typesense.yuxuanda.cn
+TYPESENSE_SEARCH_API_KEY=<search-only key>
+```
+
+`TYPESENSE_API_KEY` 仅用于索引/爬取等服务端脚本，不要放到 `astro.config.mjs`、`PUBLIC_*` 环境变量或任何会进入前端包的位置。如果此前把 bootstrap/admin key 用在前端，请立即在 Typesense 中删除旧 key 并重新生成。
+
 ## 🚀 如何部署？
 
 由于本项目是基于 [Astro](https://astro.build/) 构建的纯静态网站，您可以轻松部署到各种平台。
@@ -219,8 +254,9 @@ pnpm build
    - **Framework preset**: `Astro`
    - **Build command**: `pnpm build`
    - **Output directory**: `dist`
-5. 点击 **Save and Deploy**。
-6. 部署完成后，你将获得一个 `*.pages.dev` 域名。
+5. 在 **Environment variables** 中添加上文 Typesense 搜索所需变量，尤其是 `TYPESENSE_ORIGIN` 和 `TYPESENSE_SEARCH_API_KEY`。
+6. 点击 **Save and Deploy**。
+7. 部署完成后，你将获得一个 `*.pages.dev` 域名。
 
 ## 🎨 自定义配置
 

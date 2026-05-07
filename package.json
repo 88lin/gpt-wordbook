@@ -14,6 +14,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "bash deploy.sh",
+    "scrape": "docker run --env-file=./.env -e \"CONFIG=$(node scripts/print-docsearch-config.mjs)\" typesense/docsearch-scraper:0.11.0",
     "format": "prettier --write \"src/content/docs/**/*.mdx\""
   },
   "dependencies": {
@@ -25,6 +26,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "@zumer/snapdom": "^2.0.1",
     "astro": "5.12.5",
+    "starlight-docsearch-typesense": "^1.0.1",
     "starlight-links-validator": "^0.14.3",
     "starlight-theme-rapide": "^0.5.1",
     "svelte": "^5.20.5",

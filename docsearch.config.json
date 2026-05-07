@@ -1,0 +1,21 @@
+{
+	"index_name": "docs",
+	"allowed_domains": ["word.lovejade.cn"],
+	"start_urls": [
+		{
+			"url": "https://word.lovejade.cn/"
+		}
+	],
+	"selectors": {
+		"default": {
+			"lvl0": ".main-pane h1",
+			"lvl1": ".main-pane h2",
+			"lvl2": ".main-pane h3",
+			"lvl3": ".main-pane h4",
+			"lvl4": ".main-pane h5",
+			"text": ".main-pane p, .main-pane ul li, .main-pane table tbody tr"
+		}
+	},
+	"strip_chars": " .,;:#",
+	"scrape_start_urls": false
+}
