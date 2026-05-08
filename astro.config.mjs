@@ -5,40 +5,24 @@ import starlightLinksValidator from "starlight-links-validator";
 import starlightThemeRapide from "starlight-theme-rapide";
 import tailwindcss from "@tailwindcss/vite";
 import sidebarConfig from "./generate-sidebar.js";
-import starlightDocSearchTypesense from "starlight-docsearch-typesense";
+import {
+  createTypesensePlugin,
+  typesenseConfig,
+} from "./typesense-config.mjs";
 
 const buildProfile =
   process.env.WORDBOOK_BUILD_PROFILE === "release" ? "release" : "local";
 const isReleaseBuild = buildProfile === "release";
-const isCloudflarePagesBuild = process.env.CF_PAGES === "1";
 const siteUrl = new URL(
   process.env.PUBLIC_SITE_URL || "https://word.lovejade.cn/"
 ).toString();
-const typesenseCollectionName =
-  process.env.TYPESENSE_COLLECTION_NAME || "docs";
-const useTypesenseProxy =
-  process.env.TYPESENSE_USE_PROXY === "true" ||
-  ((isReleaseBuild || isCloudflarePagesBuild) &&
-    process.env.TYPESENSE_USE_PROXY !== "false");
-const typesenseProxyPath = process.env.TYPESENSE_PROXY_PATH || "/typesense";
-const typesenseProxyUrl = new URL(typesenseProxyPath, siteUrl).toString();
-const typesenseSearchEndpoint =
-  process.env.TYPESENSE_SEARCH_ENDPOINT ||
-  (useTypesenseProxy
-    ? typesenseProxyUrl
-    : process.env.TYPESENSE_NODE_URL || "https://typesense.yuxuanda.cn");
-const typesenseClientApiKey = useTypesenseProxy
-  ? process.env.TYPESENSE_PROXY_CLIENT_API_KEY || "proxy-search"
-  : process.env.TYPESENSE_SEARCH_API_KEY;
-const hasTypesenseSearch = useTypesenseProxy || Boolean(typesenseClientApiKey);
-const typesenseConnectOrigin = new URL(typesenseSearchEndpoint).origin;
 const contentSecurityPolicy = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: https:",
   "font-src 'self' data:",
-  `connect-src 'self' ${typesenseConnectOrigin} https://typesense.yuxuanda.cn https://word.lovejade.cn https://www.google-analytics.com`,
+  `connect-src 'self' ${typesenseConfig.connectOrigin} https://typesense.yuxuanda.cn https://word.lovejade.cn https://www.google-analytics.com`,
   "frame-src 'self' https:",
   "object-src 'none'",
   "base-uri 'self'",
@@ -46,23 +30,9 @@ const contentSecurityPolicy = [
 ].join("; ");
 const starlightPlugins = [starlightThemeRapide()];
 
-if (hasTypesenseSearch) {
-  starlightPlugins.push(
-    starlightDocSearchTypesense({
-      typesenseCollectionName,
-      typesenseServerConfig: {
-        nodes: [{ url: typesenseSearchEndpoint }],
-        apiKey: typesenseClientApiKey,
-        sendApiKeyAsQueryParam: false,
-      },
-    })
-  );
-}
-
-if (!hasTypesenseSearch) {
-  console.warn(
-    "[wordbook] Typesense search is disabled. Set TYPESENSE_SEARCH_API_KEY for direct local search, or build with WORDBOOK_BUILD_PROFILE=release to use the Cloudflare proxy."
-  );
+const typesensePlugin = createTypesensePlugin();
+if (typesensePlugin) {
+  starlightPlugins.push(typesensePlugin);
 }
 
 if (isReleaseBuild) {
