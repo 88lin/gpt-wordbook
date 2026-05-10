@@ -416,11 +416,12 @@ export default defineConfig({
             content: "ca-pub-8586652723015758",
           },
         },
-        // Google Analytics - 延迟加载
+        // Google Analytics - bootstrap gtag immediately so early events queue;
+        // defer loading the gtag.js library itself until window load.
         {
           tag: "script",
           content:
-            "window.addEventListener('load',function(){var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id=G-D3DYLSSL3T';s.async=true;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-D3DYLSSL3T',{'anonymize_ip':true,'cookie_flags':'SameSite=None;Secure'})});",
+            "window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};gtag('js',new Date());gtag('config','G-D3DYLSSL3T',{'anonymize_ip':true,'cookie_flags':'SameSite=None;Secure'});window.addEventListener('load',function(){var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id=G-D3DYLSSL3T';s.async=true;document.head.appendChild(s);});",
         },
         // Google AdSense - 延迟加载
         {

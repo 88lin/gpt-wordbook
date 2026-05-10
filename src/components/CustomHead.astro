@@ -6,6 +6,7 @@ const isHomepage = Astro.url.pathname === '/' || Astro.url.pathname === '/index.
 ---
 
 <Default {...Astro.props}><slot /></Default>
+<script is:inline src="/scripts/docsearch-analytics.js" defer></script>
 
 <style is:global>
   @reference "tailwindcss";

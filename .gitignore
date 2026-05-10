@@ -1,6 +1,7 @@
 # build output
 dist/
 scripts/
+!public/scripts/
 
 # generated types
 .astro/
