@@ -1,0 +1,53 @@
+---
+title: Callback
+description: Callback 指回调函数，即在特定事件或异步操作完成时被调用的函数。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Callback" 是异步编程核心概念：将函数作为参数传入，待 I/O、定时器或用户事件触发时再执行。Node.js、浏览器 DOM 事件、Promise.then 都广泛使用 callback；过多嵌套会导致 callback hell。
+
+<Pronunciation word="Callback" uk="[ˈkɔːlbæk]" us="[ˈkɔːlbæk]" client:only />
+
+### 列举例句
+
+1. "Pass a callback to handle the API response." (传入回调函数处理 API 响应。)
+2. "She refactored nested callbacks into async/await." (她把嵌套回调重构成 async/await。)
+3. "The library invokes your callback when the download finishes." (下载完成时库会调用你的回调。)
+
+### 词根分析
+
+call（调用）+ back（回），即“稍后再回过来调用你提供的函数”。
+
+### 词缀分析
+
+复合名词/动词，强调反向调用控制流。
+
+### 文化背景
+
+从 C 函数指针到 JavaScript 高阶函数，callback 模式无处不在；现代代码多用 Promise/async 简化，但底层仍常是 callback。
+
+### 单词变形
+
+- 固定搭配: "callback function" (回调函数), "callback hell" (回调地狱), "register a callback" (注册回调)
+- 动词: call back
+
+### 记忆辅助
+
+你先把函数交给别人，别人 call back（回叫）你——callback。
+
+### 助记故事
+
+"The error callback fired twice because the event listener was never removed." (错误回调触发了两次，因为事件监听器从未移除。)
+
+<WordRelations
+  synonyms={["handler", "listener", "hook"]}
+  antonyms={["synchronous call", "blocking call"]}
+  client:only
+/>

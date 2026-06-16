@@ -1,0 +1,53 @@
+---
+title: Backend
+description: Backend 指后端，即服务器端业务逻辑、数据存储与 API 服务。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Backend"（back-end）处理认证、数据库、消息队列、批处理等用户不直接看见的逻辑。backend engineer 关注可扩展性、安全与数据一致性；通过 REST、GraphQL 等接口为 frontend 提供数据。
+
+<Pronunciation word="Backend" uk="[ˈbækend]" us="[ˈbækend]" client:only />
+
+### 列举例句
+
+1. "The backend validates every payment before confirming the order." (后端在确认订单前校验每笔支付。)
+2. "Scale the backend horizontally behind a load balancer." (在负载均衡后水平扩展后端。)
+3. "Frontend errors often trace back to a backend timeout." (前端错误常可追溯到后端超时。)
+
+### 词根分析
+
+back（后面）+ end（端），与 frontend 对称，指系统内部服务端。
+
+### 词缀分析
+
+复合词，无传统词缀。
+
+### 文化背景
+
+微服务架构中 backend 可能由多个服务组成；BFF（Backend for Frontend）是常见折中模式。
+
+### 单词变形
+
+- 固定搭配: "backend service" (后端服务), "backend API" (后端 API), "backend engineer" (后端工程师)
+- 反义: frontend
+
+### 记忆辅助
+
+藏在后面的 back end——用户看不见的后端。
+
+### 助记故事
+
+"A misconfigured backend rate limit caused legitimate users to see 429 errors." (后端限流配置错误导致正常用户看到 429 错误。)
+
+<WordRelations
+  synonyms={["server-side", "API layer", "services"]}
+  antonyms={["frontend", "client-side"]}
+  client:only
+/>

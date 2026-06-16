@@ -1,0 +1,54 @@
+---
+title: Versioning
+description: Versioning 指版本管理，为软件、API 或数据标注版本号并管理变更的策略。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Versioning" 涵盖语义化版本（semver）、API versioning（URL/header）、数据库 schema versioning。良好 versioning 让客户端知晓兼容性，并支持并行维护多个版本。
+
+<Pronunciation word="Versioning" uk="[ˈvɜːʃənɪŋ]" us="[ˈvɜːrʒənɪŋ]" client:only />
+
+### 列举例句
+
+1. "Semantic versioning signals breaking changes in the major number." (语义化版本用主版本号标示破坏性变更。)
+2. "API versioning via headers keeps URLs stable." (通过请求头做 API 版本管理可保持 URL 稳定。)
+3. "Migration tools handle database schema versioning automatically." (迁移工具自动处理数据库模式版本管理。)
+
+### 词根分析
+
+version（版本）+ -ing；version 源自拉丁语 vertere（转、变）。
+
+### 词缀分析
+
+"version" + "-ing"：进行版本标注与管理的过程。
+
+### 文化背景
+
+semver（MAJOR.MINOR.PATCH）是开源生态事实标准；不当 versioning 会导致依赖地狱。
+
+### 单词变形
+
+- 固定搭配: "semantic versioning" (语义化版本), "API versioning" (API 版本管理), "versioning strategy" (版本策略)
+- 名词: version
+- 动词: version（较少用）
+
+### 记忆辅助
+
+给每次变更贴上 version 标签的 ing 过程——versioning。
+
+### 助记故事
+
+"Poor API versioning broke mobile clients when the response shape changed silently." (糟糕的 API 版本管理在响应结构静默变更时击垮了移动客户端。)
+
+<WordRelations
+  synonyms={["release management", "revision control"]}
+  antonyms={["unversioned", "breaking without notice"]}
+  client:only
+/>

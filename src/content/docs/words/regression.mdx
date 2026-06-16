@@ -1,0 +1,53 @@
+---
+title: Regression
+description: Regression 在软件测试中指回归，即新改动导致原有功能再次出错的现象或测试类型。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Regression bug" 指曾经修好的缺陷复现；regression testing（回归测试）在每次发布前重跑核心用例，防止退化。统计学中 regression 另有“回归分析”之义，语境需区分。
+
+<Pronunciation word="Regression" uk="[rɪˈɡreʃn]" us="[rɪˈɡreʃn]" client:only />
+
+### 列举例句
+
+1. "The refactor introduced a regression in the checkout flow." (重构在结账流程引入了回归缺陷。)
+2. "Automated regression tests run on every pull request." (自动化回归测试在每次 PR 上运行。)
+3. "QA filed a regression against last week's release." (QA 针对上周发布提交了回归缺陷。)
+
+### 词根分析
+
+源自拉丁语 regressio（退回），re-（回）+ gradi（走），软件义为“质量退回更差状态”。
+
+### 词缀分析
+
+"re-" + "gress"（走）+ "-ion"：向后退的行为或现象。
+
+### 文化背景
+
+CI 中 regression suite 是质量门禁；blameless postmortem 常分析 regression 如何漏测。
+
+### 单词变形
+
+- 固定搭配: "regression test" (回归测试), "regression bug" (回归缺陷), "prevent regression" (防止回归)
+- 动词: regress
+
+### 记忆辅助
+
+功能“走回”坏状态——re-gress，就是 regression。
+
+### 助记故事
+
+"A one-line CSS change caused a visual regression on mobile Safari." (一行 CSS 改动导致移动 Safari 上出现视觉回归。)
+
+<WordRelations
+  synonyms={["backslide", "recurrence", "degradation"]}
+  antonyms={["improvement", "progression", "fix"]}
+  client:only
+/>

@@ -1,0 +1,54 @@
+---
+title: Kubernetes
+description: Kubernetes（常缩写 K8s）是开源容器编排平台，用于自动化部署、扩展与管理容器化应用。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Kubernetes" 管理 pod、service、deployment、ingress 等资源，提供自愈、滚动更新与水平扩缩容。源自 Google Borg 经验，CNCF 托管，是云原生事实标准。
+
+<Pronunciation word="Kubernetes" uk="[ˌkuːbəˈnetiːz]" us="[ˌkuːbərˈnetiːz]" client:only />
+
+### 列举例句
+
+1. "Deploy the API to Kubernetes with a Helm chart." (用 Helm chart 将 API 部署到 Kubernetes。)
+2. "Kubernetes restarted unhealthy pods automatically." (Kubernetes 自动重启不健康 Pod。)
+3. "They migrated from VMs to Kubernetes for better utilization." (他们从虚拟机迁到 Kubernetes 以提高利用率。)
+
+### 词根分析
+
+希腊语 κυβερνήτης（kubernetes，舵手、驾驶员），喻指“驾驭容器舰队”；缩写 K8s（8 个字母省略）。
+
+### 词缀分析
+
+希腊词根专有名词化，无现代英语词缀。
+
+### 文化背景
+
+与 Docker、Prometheus、Istio 构成云原生栈；学习曲线陡峭但大规模运维收益显著。
+
+### 单词变形
+
+- 固定搭配: "Kubernetes cluster" (K8s 集群), "Kubernetes deployment" (K8s 部署), "managed Kubernetes" (托管 K8s)
+- 缩写: K8s
+- 相关: pod, helm, container orchestration
+
+### 记忆辅助
+
+K8s 像舵手 kubernetes 驾驭许多 container 小船。
+
+### 助记故事
+
+"A misconfigured Kubernetes ingress routed staging traffic to production until the team fixed the host rules." (配置错误的 Kubernetes Ingress 把预发流量导向生产，直到团队修正主机规则。)
+
+<WordRelations
+  synonyms={["K8s", "container orchestrator", "orchestration platform"]}
+  antonyms={["manual deployment", "single server"]}
+  client:only
+/>

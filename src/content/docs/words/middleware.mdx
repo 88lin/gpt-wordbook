@@ -1,0 +1,53 @@
+---
+title: Middleware
+description: Middleware 指中间件，即位于应用与底层系统之间、处理通用横切逻辑的软件层。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+在 Web 框架中，middleware 可在请求到达 handler 前执行认证、日志、CORS 等；在企业架构中，middleware 也指消息中间件（MQ）、应用服务器等。Express middleware、Koa middleware 是典型例子。
+
+<Pronunciation word="Middleware" uk="[ˈmɪdlweə]" us="[ˈmɪdlwer]" client:only />
+
+### 列举例句
+
+1. "Add authentication middleware before protected routes." (在受保护路由前添加认证中间件。)
+2. "The message middleware buffers traffic between services." (消息中间件在服务间缓冲流量。)
+3. "Each middleware calls next() to pass control along the chain." (每个中间件调用 next() 将控制权传递下去。)
+
+### 词根分析
+
+middle（中间）+ ware（产品、软件），仿 hardware/software 构词。
+
+### 词缀分析
+
+复合词，"-ware" 表软件/件类。
+
+### 文化背景
+
+微服务间常用 middleware 解耦；过度堆叠 middleware 可能让请求链路难以调试。
+
+### 单词变形
+
+- 固定搭配: "Express middleware" (Express 中间件), "middleware chain" (中间件链), "message middleware" (消息中间件)
+- 相关: interceptor, pipeline
+
+### 记忆辅助
+
+站在 middle 的 soft ware——夹在客户端与业务之间的 middleware。
+
+### 助记故事
+
+"A logging middleware revealed which step added 200ms to every API call." (日志中间件显示是哪一步给每个 API 调用加了 200 毫秒。)
+
+<WordRelations
+  synonyms={["interceptor", "pipeline layer", "broker"]}
+  antonyms={["application core", "endpoint handler"]}
+  client:only
+/>

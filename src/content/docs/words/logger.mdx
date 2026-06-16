@@ -1,0 +1,54 @@
+---
+title: Logger
+description: Logger 指日志记录器，是应用程序中负责写入日志的组件或库。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Logger" 是 logging 框架中的核心对象（如 Python logging.Logger、Java SLF4J Logger），提供 info()、error() 等方法，并支持格式化、过滤与多输出目标（文件、stdout、远程服务）。
+
+<Pronunciation word="Logger" uk="[ˈlɒɡə]" us="[ˈlɔːɡər]" client:only />
+
+### 列举例句
+
+1. "Configure the logger to rotate files daily." (配置 logger 每日轮转日志文件。)
+2. "Each module gets its own named logger for easier filtering." (每个模块使用独立命名的 logger 便于过滤。)
+3. "The logger attached the request ID to every message." (logger 给每条消息附上了请求 ID。)
+
+### 词根分析
+
+log（记录）+ -er，表示执行记录的工具或实体。
+
+### 词缀分析
+
+"log" + "-er"：写日志的器/者。
+
+### 文化背景
+
+几乎所有后端框架都内置或推荐 logger；错误排查时“先看 logger 输出”是工程师本能。
+
+### 单词变形
+
+- 固定搭配: "logger instance" (logger 实例), "root logger" (根 logger), "logger configuration" (logger 配置)
+- 动词: log
+- 过程: logging
+
+### 记忆辅助
+
+"log" + "er"：专门负责 log 的 er——logger。
+
+### 助记故事
+
+"The logger printed a stack trace before the process crashed, saving hours of guessing." (进程崩溃前 logger 打出堆栈，省了好几小时瞎猜。)
+
+<WordRelations
+  synonyms={["log handler", "log writer", "recorder"]}
+  antonyms={[]}
+  client:only
+/>

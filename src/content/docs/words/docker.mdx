@@ -1,0 +1,53 @@
+---
+title: Docker
+description: Docker 是容器化平台，将应用及其依赖打包为可移植的容器镜像并运行。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Docker" 使用 Dockerfile 构建 image，通过 docker run 启动 container，共享主机内核但隔离文件系统与网络。简化“在我机器上能跑”问题，是 CI/CD 与微服务部署标配。docker compose 可编排多容器应用。
+
+<Pronunciation word="Docker" uk="[ˈdɒkə]" us="[ˈdɑːkər]" client:only />
+
+### 列举例句
+
+1. "Build the Docker image in CI and push it to the registry." (在 CI 中构建 Docker 镜像并推送到仓库。)
+2. "The Dockerfile pins the Node version for reproducible builds." (Dockerfile 固定 Node 版本以实现可复现构建。)
+3. "Run integration tests inside Docker to match production." (在 Docker 内运行集成测试以匹配生产环境。)
+
+### 词根分析
+
+品牌名，源自 docker（码头工人），寓意搬运标准化货箱（容器）。
+
+### 词缀分析
+
+专有名词，"-er" 在 docker（工人）中为职业后缀，产品名借用该词。
+
+### 文化背景
+
+2013 年发布后改变部署范式；与 Kubernetes 常配合：Docker 打包，K8s 编排。
+
+### 单词变形
+
+- 固定搭配: "Docker container" (Docker 容器), "Docker image" (Docker 镜像), "Docker Compose" (Compose 编排)
+- 相关: containerization, registry
+
+### 记忆辅助
+
+像码头工人 docker 搬运标准集装箱——Docker 搬运标准容器镜像。
+
+### 助记故事
+
+"A slim Docker base image cut deploy time and shrank the attack surface." (精简 Docker 基础镜像缩短了部署时间并缩小攻击面。)
+
+<WordRelations
+  synonyms={["container platform", "containerization"]}
+  antonyms={["bare metal only", "manual install"]}
+  client:only
+/>

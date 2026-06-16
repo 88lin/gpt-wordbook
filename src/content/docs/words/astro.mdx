@@ -1,0 +1,54 @@
+---
+title: Astro
+description: Astro 是面向内容站点的现代 Web 框架，默认发送极少 JavaScript，强调性能与 MDX 内容。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Astro" 支持 .astro 组件、岛屿架构（islands architecture），可按需为 React/Vue/Svelte 组件注水（hydrate）。适合文档站、博客与营销页；本项目 gpt-wordbook 即基于 Astro + Starlight 构建。
+
+<Pronunciation word="Astro" uk="[ˈæstrəʊ]" us="[ˈæstroʊ]" client:only />
+
+### 列举例句
+
+1. "This wordbook site is generated with Astro and Starlight." (本单词书站点由 Astro 与 Starlight 生成。)
+2. "Astro ships zero JavaScript by default for static content." (Astro 对静态内容默认不发送 JavaScript。)
+3. "Add client:only when a Svelte widget needs interactivity." (Svelte 组件需要交互时添加 client:only。)
+
+### 词根分析
+
+希腊语 astron（星），品牌名 Astro 喻指“轻量、快速、面向内容宇宙”；亦与天文学 astro- 前缀同形，此处为产品名。
+
+### 词缀分析
+
+专有品牌名。
+
+### 文化背景
+
+2021 年发布后以 content-focused 与性能著称；与 Next.js/Nuxt 路线不同，默认静态优先。
+
+### 单词变形
+
+- 固定搭配: "Astro project" (Astro 项目), "Astro component" (Astro 组件), "Astro build" (Astro 构建)
+- 集成: Starlight, MDX, islands
+- 相关: Vite, static site
+
+### 记忆辅助
+
+像星星 astro 一样轻——Astro 默认只送必要 JS，页面更轻。
+
+### 助记故事
+
+"Moving docs to Astro cut Lighthouse JavaScript scores dramatically without losing search." (文档迁到 Astro 后 Lighthouse JS 分数大幅下降，搜索未受影响。)
+
+<WordRelations
+  synonyms={["static site generator", "content framework"]}
+  antonyms={["heavy SPA"]}
+  client:only
+/>

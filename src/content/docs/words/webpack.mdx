@@ -1,0 +1,53 @@
+---
+title: Webpack
+description: Webpack 是 JavaScript 模块打包工具，将项目依赖与资源构建为浏览器可用的 bundle。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Webpack" 以 entry 为起点分析 import 图，通过 loader 处理 CSS/图片等，plugin 做优化（tree shaking、code splitting）。曾是 React/Vue 脚手架默认方案，现与 Vite 等 newer bundler 并存。
+
+<Pronunciation word="Webpack" uk="[ˈwebpæk]" us="[ˈwebpæk]" client:only />
+
+### 列举例句
+
+1. "Webpack splits vendor code into a separate chunk." (Webpack 将第三方代码拆成独立 chunk。)
+2. "Misconfigured loaders broke SVG imports in the Webpack build." (loader 配置错误导致 Webpack 构建中 SVG 导入失败。)
+3. "They migrated from Webpack to Vite for faster dev startup." (他们从 Webpack 迁到 Vite 以加快开发启动。)
+
+### 词根分析
+
+Web（网页）+ pack（打包），直译“把 Web 资源打包”。
+
+### 词缀分析
+
+复合品牌名。
+
+### 文化背景
+
+2012 年起主导前端工程化；webpack.config.js 是经典配置文件；HMR（热模块替换）提升开发体验。
+
+### 单词变形
+
+- 固定搭配: "Webpack config" (Webpack 配置), "Webpack bundle" (Webpack 打包产物), "Webpack plugin" (Webpack 插件)
+- 相关: bundler, loader, Vite
+
+### 记忆辅助
+
+把 Web 资源 pack 成一个包——Webpack。
+
+### 助记故事
+
+"A Webpack bundle analyzer revealed a duplicate library eating half the page weight." (Webpack 包分析器发现重复库占了一半页面体积。)
+
+<WordRelations
+  synonyms={["bundler", "module bundler"]}
+  antonyms={["no bundler", "native ESM only"]}
+  client:only
+/>

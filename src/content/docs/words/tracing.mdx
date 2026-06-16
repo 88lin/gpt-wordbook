@@ -1,0 +1,53 @@
+---
+title: Tracing
+description: Tracing 指追踪程序执行路径或分布式请求链路，用于性能分析与故障排查。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Tracing" 可指单进程内的函数调用追踪，也可指分布式系统中的 request tracing（如 OpenTelemetry、Jaeger），通过 trace ID 串联跨服务日志。与 logging 互补：log 记事件，trace 记因果链路与耗时。
+
+<Pronunciation word="Tracing" uk="[ˈtreɪsɪŋ]" us="[ˈtreɪsɪŋ]" client:only />
+
+### 列举例句
+
+1. "Distributed tracing revealed which microservice added the latency." (分布式追踪显示是哪个微服务增加了延迟。)
+2. "Enable stack tracing to see the full call path of the error." (启用堆栈追踪以查看错误的完整调用路径。)
+3. "Tracing overhead is acceptable in staging but tuned down in production." (追踪开销在预发可接受，生产环境会调低。)
+
+### 词根分析
+
+trace（追踪）+ -ing；trace 源自拉丁语 tractus（拉、拖），引申为沿路径跟随。
+
+### 词缀分析
+
+"trace" + "-ing" 表示追踪的过程或技术。
+
+### 文化背景
+
+云原生可观测性三大支柱：metrics、logging、tracing；SRE 团队常用 tracing 定位跨服务故障。
+
+### 单词变形
+
+- 固定搭配: "distributed tracing" (分布式追踪), "trace span" (追踪跨度), "tracing tool" (追踪工具)
+- 名词: trace, tracer
+
+### 记忆辅助
+
+沿着程序留下的 trace（痕迹）一路 tracing 下去。
+
+### 助记故事
+
+"With tracing enabled, every hop from gateway to database appeared on one timeline." (开启追踪后，从网关到数据库的每一跳都出现在同一条时间线上。)
+
+<WordRelations
+  synonyms={["tracking", "following", "profiling"]}
+  antonyms={["ignoring", "blind spot"]}
+  client:only
+/>

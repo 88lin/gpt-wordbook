@@ -1,0 +1,54 @@
+---
+title: Npm
+description: npm 是 Node.js 的默认包管理器，用于安装、发布与管理 JavaScript 依赖。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"npm"（Node Package Manager）提供 `npm install`、`npm run script` 与 npm registry。package.json 声明依赖与脚本；package-lock.json 锁定版本。pnpm、yarn 是替代方案，但 npm 仍最普及。
+
+<Pronunciation word="Npm" uk="[ˌen piː ˈem]" us="[ˌen piː ˈem]" client:only />
+
+### 列举例句
+
+1. "Run npm install after cloning the repository." (克隆仓库后运行 npm install。)
+2. "The CI pipeline executes npm test on every commit." (CI 流水线在每次提交时执行 npm test。)
+3. "They published the library to the public npm registry." (他们将库发布到公共 npm registry。)
+
+### 词根分析
+
+缩写：Node + Package + Manager。
+
+### 词缀分析
+
+首字母缩写。
+
+### 文化背景
+
+npm 生态体量巨大；需注意 supply chain 安全与 lockfile 提交；npx 可一次性运行 CLI 包。
+
+### 单词变形
+
+- 固定搭配: "npm package" (npm 包), "npm script" (npm 脚本), "npm registry" (npm  registry)
+- 文件: package.json, package-lock.json
+- 替代: pnpm, yarn
+
+### 记忆辅助
+
+Node 项目的 Package Manager——npm。
+
+### 助记故事
+
+"A deprecated npm dependency triggered security alerts until the team upgraded the transitive package." (过时的 npm 依赖引发安全告警，直到团队升级了传递依赖。)
+
+<WordRelations
+  synonyms={["package manager", "Node package manager"]}
+  antonyms={["manual vendor copy"]}
+  client:only
+/>

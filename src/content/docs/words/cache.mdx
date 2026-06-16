@@ -1,0 +1,54 @@
+---
+title: Cache
+description: Cache 指缓存，将常用数据暂存于高速存储以加速后续访问的技术或存储区。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+作名词，cache 可以是 CPU cache、HTTP cache、Redis cache 等。作动词 to cache 表示把结果存起来复用。需设计失效策略（TTL、LRU、cache invalidation），否则会出现 stale data。
+
+<Pronunciation word="Cache" uk="[kæʃ]" us="[kæʃ]" client:only />
+
+### 列举例句
+
+1. "Cache API responses for five minutes to reduce load." (将 API 响应缓存五分钟以降低负载。)
+2. "Clear the browser cache after deploying new assets." (部署新资源后清除浏览器缓存。)
+3. "A cache miss forced a slow database query." (缓存未命中迫使进行一次慢数据库查询。)
+
+### 词根分析
+
+源自法语 cacher（隐藏），原指秘密储藏处；计算机领域指高速隐藏层存储。
+
+### 词缀分析
+
+该词无典型词缀；动词与名词同形。
+
+### 文化背景
+
+“There are only two hard things in computer science: cache invalidation and naming things” 是程序员名梗。
+
+### 单词变形
+
+- 固定搭配: "cache hit" (缓存命中), "cache invalidation" (缓存失效), "in-memory cache" (内存缓存)
+- 形容词: cached
+- 相关: buffer, CDN
+
+### 记忆辅助
+
+把数据藏起来（cacher）下次快取——cache。
+
+### 助记故事
+
+"Stale cache entries made users see old prices until engineers purged the Redis keys." (过期缓存让用户看到旧价格，直到工程师清理 Redis 键。)
+
+<WordRelations
+  synonyms={["store", "buffer", "memo"]}
+  antonyms={["invalidate", "flush"]}
+  client:only
+/>

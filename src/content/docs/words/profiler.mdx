@@ -1,0 +1,53 @@
+---
+title: Profiler
+description: Profiler 指性能分析器，用于测量程序各部分的 CPU、内存或 I/O 占用。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Profiler" 采集运行时数据，生成火焰图（flame graph）或热点报告，帮助定位瓶颈。常见类型有 CPU profiler、memory profiler、allocation profiler，可采样（sampling）或插桩（instrumentation）。
+
+<Pronunciation word="Profiler" uk="[ˈprəʊfaɪlə]" us="[ˈproʊfaɪlər]" client:only />
+
+### 列举例句
+
+1. "The profiler showed that JSON parsing consumed 40% of CPU time." (分析器显示 JSON 解析占用了 40% CPU 时间。)
+2. "Run the memory profiler to find objects that never get garbage-collected." (运行内存分析器找出从未被回收的对象。)
+3. "Chrome DevTools includes a built-in JavaScript profiler." (Chrome DevTools 内置 JavaScript 分析器。)
+
+### 词根分析
+
+profile（概况、剖面）+ -er；profile 原指侧影轮廓，引申为程序执行的“剖面图”。
+
+### 词缀分析
+
+"profile" + "-er"：生成或展示性能剖面的工具。
+
+### 文化背景
+
+优化前先 profile 是性能工程铁律；“premature optimization” 的反面是数据驱动的 profiling。
+
+### 单词变形
+
+- 固定搭配: "CPU profiler" (CPU 分析器), "memory profiler" (内存分析器), "profile a build" (对构建做性能分析)
+- 动词: profile, profiling
+
+### 记忆辅助
+
+profiler 画出程序性能的 profile（剖面），哪里胖哪里瘦一目了然。
+
+### 助记故事
+
+"After profiling, they replaced a regex loop with a hash map and cut latency in half." (分析后他们用哈希表替换正则循环，延迟减半。)
+
+<WordRelations
+  synonyms={["analyzer", "monitor", "tracer"]}
+  antonyms={["guesswork"]}
+  client:only
+/>

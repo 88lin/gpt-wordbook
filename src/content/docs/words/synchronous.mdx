@@ -1,0 +1,55 @@
+---
+title: Synchronous
+description: Synchronous 作形容词表示“同步的”，指操作按顺序执行，后续步骤需等待前一步完成。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Synchronous"（sync）描述阻塞式调用：函数返回即表示操作完成。同步代码更易推理，但在 I/O 密集场景可能浪费 CPU。许多 API 同时提供 sync 与 async 版本。
+
+<Pronunciation word="Synchronous" uk="[ˈsɪŋkrənəs]" us="[ˈsɪŋkrənəs]" client:only />
+
+### 列举例句
+
+1. "Avoid synchronous network calls on the main thread." (避免在主线程做同步网络调用。)
+2. "The library offers both synchronous and asynchronous APIs." (该库同时提供同步与异步 API。)
+3. "Synchronous replication guarantees stronger consistency." (同步复制保证更强一致性。)
+
+### 词根分析
+
+syn-（共同）+ chronos（时间）+ -ous，即“在同一时间轴上对齐发生”。
+
+### 词缀分析
+
+"syn-" + "chron-" + "-ous"：时间上一致的。
+
+### 文化背景
+
+分布式系统中 synchronous RPC 与 asynchronous messaging 是架构选型关键；UI 线程上 sync I/O 会导致卡顿。
+
+### 单词变形
+
+- 固定搭配: "synchronous call" (同步调用), "synchronous execution" (同步执行), "run synchronously" (同步运行)
+- 缩写: sync
+- 反义: asynchronous
+- 副词: synchronously
+
+### 记忆辅助
+
+syn（一起）+ chron（时间）——在同一时间线上等完再做，synchronous。
+
+### 助记故事
+
+"A synchronous file read froze the app for two seconds on a slow disk." (同步读文件在慢盘上让应用卡住两秒。)
+
+<WordRelations
+  synonyms={["blocking", "sequential", "in step"]}
+  antonyms={["asynchronous", "non-blocking"]}
+  client:only
+/>

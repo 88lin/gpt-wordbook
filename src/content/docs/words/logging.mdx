@@ -1,0 +1,54 @@
+---
+title: Logging
+description: Logging 指在程序运行中记录日志，用于监控、审计与故障排查。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Logging" 是将结构化或文本信息写入日志系统的过程，常见级别有 debug、info、warn、error。良好 logging 应包含时间戳、上下文 ID 与足够诊断信息，但避免泄露敏感数据。
+
+<Pronunciation word="Logging" uk="[ˈlɒɡɪŋ]" us="[ˈlɔːɡɪŋ]" client:only />
+
+### 列举例句
+
+1. "Structured logging makes queries in Elasticsearch much faster." (结构化日志让 Elasticsearch 查询更快。)
+2. "Turn down verbose logging in production to save disk space." (生产环境降低冗长日志以节省磁盘。)
+3. "Centralized logging helped the on-call engineer find the root cause." (集中式日志帮值班工程师找到根因。)
+
+### 词根分析
+
+log（日志、记录）+ -ing；log 原义为航海日志，计算机领域沿用“按时间记录事件”之意。
+
+### 词缀分析
+
+"log" + "-ing"：记录日志这一活动。
+
+### 文化背景
+
+ELK/EFK 栈、Splunk、CloudWatch Logs 等是常见 logging 基础设施；twelve-factor app 强调把日志当事件流。
+
+### 单词变形
+
+- 固定搭配: "logging framework" (日志框架), "logging level" (日志级别), "centralized logging" (集中日志)
+- 工具: logger
+- 动词: log
+
+### 记忆辅助
+
+程序员像船长写 log（航海日志）一样写 logging。
+
+### 助记故事
+
+"After enabling request logging, they spotted the duplicate header within minutes." (启用请求日志后，几分钟内就发现重复头字段。)
+
+<WordRelations
+  synonyms={["recording", "auditing", "journaling"]}
+  antonyms={["silencing", "suppressing"]}
+  client:only
+/>

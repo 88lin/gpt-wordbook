@@ -1,0 +1,53 @@
+---
+title: Hotfix
+description: Hotfix 指热修复，即对生产环境紧急缺陷的快速补丁，通常绕过常规发布周期。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Hotfix" 由 hot（紧急、正在运行）+ fix（修复）构成，针对线上严重 bug 或安全漏洞，需尽快部署。常与 rollback 计划、变更窗口和事后复盘（postmortem）配合。
+
+<Pronunciation word="Hotfix" uk="[ˈhɒtfɪks]" us="[ˈhɑːtfɪks]" client:only />
+
+### 列举例句
+
+1. "The team shipped a hotfix within two hours of the outage." (宕机后两小时内团队发布了热修复。)
+2. "This hotfix only patches the authentication bypass." (该热修复仅修补身份验证绕过漏洞。)
+3. "After the hotfix, they scheduled a proper release with tests." (热修复后他们安排了带测试的正式版本。)
+
+### 词根分析
+
+复合词 hot + fix，hot 在此指“生产系统正着火/正运行”，非温度义。
+
+### 词缀分析
+
+"hot" + "fix"：对正在运行的系统进行的紧急 fix。
+
+### 文化背景
+
+游戏与 SaaS 行业常用 hotfix；与 coldfix（维护窗口内修复）相对；过度依赖 hotfix 往往意味着测试或流程不足。
+
+### 单词变形
+
+- 固定搭配: "deploy a hotfix" (部署热修复), "hotfix branch" (热修复分支), "emergency hotfix" (紧急热修复)
+- 动词: hotfix（非正式，指打热修）
+
+### 记忆辅助
+
+系统 hot（着火）了，赶紧 fix——hotfix。
+
+### 助记故事
+
+"A midnight hotfix restored checkout while engineers wrote a longer-term patch for the next sprint." (午夜热修复恢复了结账，工程师则为下个冲刺写了更长期的补丁。)
+
+<WordRelations
+  synonyms={["emergency patch", "quick fix", "urgent fix"]}
+  antonyms={["scheduled release", "major upgrade"]}
+  client:only
+/>

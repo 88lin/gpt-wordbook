@@ -1,0 +1,53 @@
+---
+title: Scalability
+description: Scalability 指可扩展性，即系统在负载增长时保持性能与可靠性的能力。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Scalability" 是架构非功能需求之一，涉及吞吐、延迟、成本曲线。常区分 scale up（垂直）与 scale out（水平）；良好 scalability 意味着增加资源带来近似线性的容量提升。
+
+<Pronunciation word="Scalability" uk="[ˌskeɪləˈbɪləti]" us="[ˌskeɪləˈbɪləti]" client:only />
+
+### 列举例句
+
+1. "Load tests measured scalability up to five times normal traffic." (压测衡量了高达正常流量五倍时的可扩展性。)
+2. "Sharding improved database scalability for large tenants." (分片提升了大租户场景下的数据库可扩展性。)
+3. "Scalability planning should include cost per additional user." (可扩展性规划应包含每新增用户的成本。)
+
+### 词根分析
+
+scalable + -ity，scale 表规模，-ity 表抽象性质。
+
+### 词缀分析
+
+"scalable" + "-ity"：可扩展这一特性。
+
+### 文化背景
+
+CAP 定理、Amdahl 定律与 scalability 讨论紧密相关；过早优化 scalability 不如先验证产品市场契合。
+
+### 单词变形
+
+- 固定搭配: "horizontal scalability" (水平可扩展性), "scalability bottleneck" (扩展瓶颈), "scalability test" (扩展性测试)
+- 形容词: scalable
+
+### 记忆辅助
+
+scalable 的名词形式——ability to scale，即 scalability。
+
+### 助记故事
+
+"Poor scalability showed up as rising p99 latency long before the servers maxed out CPU." (可扩展性不足表现为 p99 延迟上升，远早于 CPU 打满。)
+
+<WordRelations
+  synonyms={["expandability", "elasticity", "growth capacity"]}
+  antonyms={["bottleneck", "limitation"]}
+  client:only
+/>

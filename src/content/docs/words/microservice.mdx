@@ -1,0 +1,53 @@
+---
+title: Microservice
+description: Microservice 指微服务，将应用拆分为可独立部署、围绕业务能力组织的小型服务。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Microservice" 架构中每个服务自有数据存储与发布周期，通过 HTTP/gRPC/消息队列通信。优点包括团队自治与弹性扩展；代价是分布式复杂度、网络延迟与运维成本，需配合容器编排与可观测性。
+
+<Pronunciation word="Microservice" uk="[ˈmaɪkrəʊˌsɜːvɪs]" us="[ˈmaɪkroʊˌsɜːrvɪs]" client:only />
+
+### 列举例句
+
+1. "They split the monolith into payment and inventory microservices." (他们把单体拆成支付与库存微服务。)
+2. "Each microservice owns its database schema." (每个微服务拥有自己的数据库模式。)
+3. "Tracing is essential when debugging cross-microservice failures." (跨微服务故障排查离不开追踪。)
+
+### 词根分析
+
+micro-（微小）+ service（服务），与 monolith（单体）相对，约 2010 年代随容器与云原生兴起而普及。
+
+### 词缀分析
+
+"micro-" 表示“小”；"service" 为业务服务单元。
+
+### 文化背景
+
+Martin Fowler、Sam Newman 等著作讨论何时采用微服务；盲目拆分 monolith 是常见反模式。
+
+### 单词变形
+
+- 固定搭配: "microservice architecture" (微服务架构), "microservice mesh" (微服务网格), "independent microservice" (独立微服务)
+- 形容词: microservices-based
+
+### 记忆辅助
+
+micro（小）的 service（服务）——一块业务一个小服务，就是 microservice。
+
+### 助记故事
+
+"One slow microservice dragged down checkout until caching was added at the gateway." (一个慢微服务拖垮结账，直到在网关加了缓存。)
+
+<WordRelations
+  synonyms={["service", "bounded context service"]}
+  antonyms={["monolith", "monolithic application"]}
+  client:only
+/>

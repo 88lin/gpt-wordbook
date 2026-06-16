@@ -1,0 +1,53 @@
+---
+title: Payload
+description: Payload 指有效载荷，即请求、消息或数据包中携带的实际业务数据部分。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+在 HTTP 中，payload 常指 JSON body；在 JWT 中指 claims 部分；在消息队列中指业务消息内容，区别于 header/metadata。安全语境下需验证 payload 大小与格式，防止注入。
+
+<Pronunciation word="Payload" uk="[ˈpeɪləʊd]" us="[ˈpeɪloʊd]" client:only />
+
+### 列举例句
+
+1. "Log the request payload only in non-production environments." (仅在非生产环境记录请求 payload。)
+2. "The webhook payload includes the order ID and status." (Webhook 载荷包含订单 ID 与状态。)
+3. "Compress large payloads before uploading to S3." (上传 S3 前压缩大载荷。)
+
+### 词根分析
+
+pay（支付、承载）+ load（负载），原指运输工具实际装载的货物，计算机借用为“有用数据负载”。
+
+### 词缀分析
+
+复合词，无传统词缀。
+
+### 文化背景
+
+区分 payload 与 envelope/headers 是 API 设计基本功；malicious payload 是常见攻击向量。
+
+### 单词变形
+
+- 固定搭配: "JSON payload" (JSON 载荷), "request payload" (请求体), "payload size" (载荷大小)
+- 相关: body, message, data
+
+### 记忆辅助
+
+真正要 pay（交付）的 load（负载）——不是外壳，是 payload。
+
+### 助记故事
+
+"An oversized payload triggered a 413 error until the client paginated the results." (过大的载荷触发 413 错误，直到客户端改为分页结果。)
+
+<WordRelations
+  synonyms={["body", "content", "data", "message"]}
+  antonyms={["header", "metadata", "envelope"]}
+  client:only
+/>

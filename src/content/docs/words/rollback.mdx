@@ -1,0 +1,53 @@
+---
+title: Rollback
+description: Rollback 指回滚，将系统、数据库或部署恢复到之前的稳定版本或状态。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Rollback" 在软件发布中指撤销有问题的部署；在数据库中指事务回滚（transaction rollback）；在配置管理中可恢复上一版设置。是 incident response 的核心手段之一。
+
+<Pronunciation word="Rollback" uk="[ˈrəʊlbæk]" us="[ˈroʊlbæk]" client:only />
+
+### 列举例句
+
+1. "They triggered an automatic rollback when error rates spiked." (错误率飙升时他们触发了自动回滚。)
+2. "The DBA performed a rollback to undo the failed migration." (DBA 执行回滚以撤销失败的迁移。)
+3. "Always keep the previous container image for a quick rollback." (始终保留上一版容器镜像以便快速回滚。)
+
+### 词根分析
+
+roll（滚动）+ back（向后），字面“滚回去”，引申为恢复先前状态。
+
+### 词缀分析
+
+复合词/复合动词，无传统词缀。
+
+### 文化背景
+
+蓝绿部署、金丝雀发布都设计为可快速 rollback；无回滚能力的发布被视为高风险。
+
+### 单词变形
+
+- 固定搭配: "rollback deployment" (回滚部署), "rollback transaction" (回滚事务), "rollback plan" (回滚方案)
+- 动词: roll back（分写亦常见）
+
+### 记忆辅助
+
+把版本 roll back 到上一个——rollback。
+
+### 助记故事
+
+"Within five minutes of the bad deploy, rollback returned the API to yesterday's stable build." (糟糕部署后五分钟内，回滚让 API 回到昨天稳定构建。)
+
+<WordRelations
+  synonyms={["revert", "restore", "undo"]}
+  antonyms={["deploy", "upgrade", "roll forward"]}
+  client:only
+/>

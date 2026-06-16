@@ -1,0 +1,53 @@
+---
+title: Sandbox
+description: Sandbox 指沙盒，即隔离的测试环境，可安全运行未信任或实验性代码而不影响生产系统。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+原义为儿童玩沙的箱子；在软件中指受限执行环境，如 browser sandbox、AWS sandbox account、API sandbox for testing payments。资源、网络与权限通常被限制，防止误操作或恶意代码扩散。
+
+<Pronunciation word="Sandbox" uk="[ˈsændbɒks]" us="[ˈsændbɑːks]" client:only />
+
+### 列举例句
+
+1. "Test the integration in a sandbox before going live." (上线前在沙盒里测试集成。)
+2. "The browser sandbox blocks plugins from accessing local files." (浏览器沙盒阻止插件访问本地文件。)
+3. "Stripe provides a sandbox API key for development." (Stripe 提供用于开发的沙盒 API 密钥。)
+
+### 词根分析
+
+sand（沙）+ box（箱），比喻“在里面随便折腾也不会弄脏外面”的封闭空间。
+
+### 词缀分析
+
+复合名词，无词缀；技术义强调隔离与安全边界。
+
+### 文化背景
+
+安全研究、支付网关、游戏模组社区都广泛使用 sandbox 概念；与 production environment 严格区分是最佳实践。
+
+### 单词变形
+
+- 固定搭配: "sandbox environment" (沙盒环境), "sandbox mode" (沙盒模式), "play in the sandbox" (在沙盒中试验)
+- 动词: sandbox（较少用，指放入沙盒）
+
+### 记忆辅助
+
+像小孩在 sandbox 里玩沙，弄乱了也不影响客厅——代码也在 sandbox 里随便试。
+
+### 助记故事
+
+"The payment sandbox let them simulate declined cards without charging real customers." (支付沙盒让他们模拟拒付卡而无需扣真实用户款。)
+
+<WordRelations
+  synonyms={["test environment", "isolated environment", "staging"]}
+  antonyms={["production", "live environment"]}
+  client:only
+/>

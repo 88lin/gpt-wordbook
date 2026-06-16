@@ -1,0 +1,54 @@
+---
+title: Recursion
+description: Recursion 指递归，即函数或过程直接或间接调用自身来解决问题。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Recursion" 需有基准情况（base case）终止，否则导致 stack overflow。适用于树遍历、分治算法、解析嵌套结构。尾递归可被部分编译器优化为循环。
+
+<Pronunciation word="Recursion" uk="[rɪˈkɜːʃn]" us="[rɪˈkɜːrʒn]" client:only />
+
+### 列举例句
+
+1. "The folder size function uses recursion to walk subdirectories." (文件夹大小函数用递归遍历子目录。)
+2. "Without a base case, recursion can exhaust the call stack." (没有基准情况，递归会耗尽调用栈。)
+3. "Some developers joke that to understand recursion, you must understand recursion." (有人开玩笑说理解递归要先理解递归。)
+
+### 词根分析
+
+源自拉丁语 recursio（返回、回溯），re-（再）+ currere（跑）。
+
+### 词缀分析
+
+"re-" + "curs-"（跑）+ "-ion"：再次跑回自身的过程。
+
+### 文化背景
+
+计算机科学入门经典主题；递归与迭代可相互转换，选型关乎可读性与性能。
+
+### 单词变形
+
+- 固定搭配: "recursive function" (递归函数), "base case" (基准情况), "tail recursion" (尾递归)
+- 形容词: recursive
+- 动词: recurse
+
+### 记忆辅助
+
+re（再）+ curs（跑）——函数又跑回自己，recursion。
+
+### 助记故事
+
+"Recursion simplified the JSON parser until depth limits were added for untrusted input." (递归简化了 JSON 解析器，直到为不可信输入加入深度限制。)
+
+<WordRelations
+  synonyms={["self-reference", "repetition"]}
+  antonyms={["iteration", "loop"]}
+  client:only
+/>

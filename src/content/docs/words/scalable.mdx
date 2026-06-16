@@ -1,0 +1,54 @@
+---
+title: Scalable
+description: Scalable 作形容词表示“可扩展的”，指系统能通过增加资源应对更大负载。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Scalable" 描述架构或算法在用户数、数据量增长时仍能保持性能，通常通过 horizontal scaling（加机器）或 vertical scaling（加配置）实现。反义 unscalable 指瓶颈明显、难以扩容。
+
+<Pronunciation word="Scalable" uk="[ˈskeɪləbl]" us="[ˈskeɪləbl]" client:only />
+
+### 列举例句
+
+1. "Design a scalable queue to absorb traffic spikes." (设计可扩展队列以吸收流量尖峰。)
+2. "The old single-server setup was not scalable beyond ten thousand users." (旧单机架构无法扩展到一万用户以上。)
+3. "Serverless functions can be highly scalable for bursty workloads." (Serverless 函数对突发负载可高度扩展。)
+
+### 词根分析
+
+scale（规模、攀登）+ -able（能够……的），即可随规模增长而扩展。
+
+### 词缀分析
+
+"scale" + "-able"：能够被扩展的。
+
+### 文化背景
+
+投资人 pitch 与架构评审中高频词；scalable 不等于“无限快”，仍受数据模型与一致性约束。
+
+### 单词变形
+
+- 固定搭配: "highly scalable" (高度可扩展), "scalable architecture" (可扩展架构), "scalable solution" (可扩展方案)
+- 名词: scalability
+- 动词: scale
+
+### 记忆辅助
+
+scale（规模）+ able（能）——能跟着规模一起长的，就是 scalable。
+
+### 助记故事
+
+"The team replaced a synchronous loop with a scalable worker pool before Black Friday." (黑五前团队用可扩展 worker 池替换了同步循环。)
+
+<WordRelations
+  synonyms={["expandable", "elastic", "growth-ready"]}
+  antonyms={["unscalable", "limited", "rigid"]}
+  client:only
+/>

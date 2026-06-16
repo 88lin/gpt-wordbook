@@ -1,0 +1,54 @@
+---
+title: Refactor
+description: Refactor 作动词表示“重构”，在不改变外部行为的前提下改进代码结构与可读性。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Refactor" 是软件工程术语，指重命名变量、提取函数、消除重复逻辑等，使代码更易维护，同时保持功能不变。常与 unit tests 配合，确保重构未引入回归。
+
+<Pronunciation word="Refactor" uk="[riːˈfæktə]" us="[riːˈfæktər]" client:only />
+
+### 列举例句
+
+1. "We need to refactor this module before adding new features." (加新功能前需要先重构这个模块。)
+2. "She refactored the legacy API into smaller, testable units." (她把遗留 API 重构成更小、可测试的单元。)
+3. "The team agreed to refactor only after the test suite was green." (团队约定测试全绿后才进行重构。)
+
+### 词根分析
+
+由 re-（再次）+ factor（因素、构成）构成，字面意为“重新组织构成要素”；在编程中由 Martin Fowler 等推广为专有术语。
+
+### 词缀分析
+
+"re-" 表示“再次”；"-factor" 在此指代码的构成方式；整体即“重新构造代码结构”。
+
+### 文化背景
+
+敏捷开发与整洁代码文化中，refactor 是日常实践；IDE 常提供“Refactor”菜单（重命名、提取方法等）。
+
+### 单词变形
+
+- 固定搭配: "refactor code" (重构代码), "refactor safely" (安全重构), "refactor in small steps" (小步重构)
+- 名词: refactoring
+- 相关: restructure, clean up
+
+### 记忆辅助
+
+"re + factor"：把代码的 factor（构成）重新来一遍——不改变功能，只改结构。
+
+### 助记故事
+
+"By refactoring the monolith into services, the team reduced merge conflicts without changing user-facing behavior." (通过把单体重构成服务，团队减少了合并冲突，且未改变面向用户的行为。)
+
+<WordRelations
+  synonyms={["restructure", "reorganize", "clean up", "rewrite"]}
+  antonyms={["spaghetti code", "harden"]}
+  client:only
+/>

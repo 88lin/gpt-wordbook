@@ -1,0 +1,53 @@
+---
+title: Daemon
+description: Daemon 指守护进程，即在后台持续运行、无需用户交互的系统服务程序。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Daemon"（亦拼 demon，但计算机语境多用 daemon）如 web server daemon、systemd service、Docker daemon。负责监听端口、调度任务、管理资源，通常在开机时启动，崩溃后由 supervisor 重启。
+
+<Pronunciation word="Daemon" uk="[ˈdiːmən]" us="[ˈdiːmən]" client:only />
+
+### 列举例句
+
+1. "The Redis daemon listens on port 6379 by default." (Redis 守护进程默认监听 6379 端口。)
+2. "Restart the Docker daemon after changing registry mirrors." (修改镜像源后需重启 Docker 守护进程。)
+3. "A background daemon syncs logs to cold storage nightly." (后台守护进程每晚将日志同步到冷存储。)
+
+### 词根分析
+
+源自希腊语 daimōn（神灵、中介灵）；MIT 早期黑客文化借用该词指后台“无形助手”进程，与 demon（恶魔）同音不同义。
+
+### 词缀分析
+
+该词无典型现代词缀；Unix 传统拼写为 daemon 以区分恶魔。
+
+### 文化背景
+
+Unix 哲学中“一切皆文件”与大量 daemon 服务相伴；systemd unit 管理现代 Linux daemon。
+
+### 单词变形
+
+- 固定搭配: "system daemon" (系统守护进程), "start the daemon" (启动守护进程), "daemon process" (守护进程)
+- 相关: service, background process
+
+### 记忆辅助
+
+像神话里看不见的 daimon 在后台帮忙——daemon 进程也在后台默默干活。
+
+### 助记故事
+
+"When the metrics daemon stopped, dashboards went blank until systemd restarted it." (指标守护进程停止后，仪表盘一片空白，直到 systemd 将其重启。)
+
+<WordRelations
+  synonyms={["background service", "server process", "agent"]}
+  antonyms={["foreground app", "interactive process"]}
+  client:only
+/>

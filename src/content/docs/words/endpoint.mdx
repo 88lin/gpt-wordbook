@@ -1,0 +1,53 @@
+---
+title: Endpoint
+description: Endpoint 指端点，即 API 或网络服务上可被调用的具体 URL 或接口地址。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Endpoint" 是 REST/GraphQL 等架构中的资源入口，如 `GET /users/:id`。也用于消息队列的 consumer endpoint、WebSocket endpoint。设计时需考虑认证、限流、版本与文档（OpenAPI）。
+
+<Pronunciation word="Endpoint" uk="[ˈendpɔɪnt]" us="[ˈendpɔɪnt]" client:only />
+
+### 列举例句
+
+1. "The mobile app calls the login endpoint over HTTPS." (移动应用通过 HTTPS 调用登录端点。)
+2. "Deprecate the old endpoint before removing it from production." (下线前先将旧端点标为弃用。)
+3. "Monitor latency per API endpoint in the dashboard." (在仪表盘按 API 端点监控延迟。)
+
+### 词根分析
+
+end（末端）+ point（点），通信链路上的“末端接触点”。
+
+### 词缀分析
+
+复合名词，强调服务对外暴露的接口位置。
+
+### 文化背景
+
+API-first 设计中 endpoint contract 是前后端协作核心；breaking change 常指 endpoint 行为或 schema 不兼容变更。
+
+### 单词变形
+
+- 固定搭配: "API endpoint" (API 端点), "REST endpoint" (REST 端点), "secure endpoint" (安全端点)
+- 相关: route, URL, path
+
+### 记忆辅助
+
+请求链条的 end point——请求最终落到的那个点，endpoint。
+
+### 助记故事
+
+"A misrouted endpoint sent production traffic to the staging database." (路由错误的端点把生产流量送到了预发数据库。)
+
+<WordRelations
+  synonyms={["API route", "URL", "interface"]}
+  antonyms={[]}
+  client:only
+/>

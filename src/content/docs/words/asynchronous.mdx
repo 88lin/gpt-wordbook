@@ -1,0 +1,54 @@
+---
+title: Asynchronous
+description: Asynchronous 作形容词表示“异步的”，指操作不必等待完成即可继续执行后续逻辑。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Asynchronous"（缩写 async）描述 I/O、网络请求、消息传递等非阻塞模式，通过 callback、Promise 或 async/await 处理结果。与 synchronous 相对，可提升吞吐但增加复杂度与竞态风险。
+
+<Pronunciation word="Asynchronous" uk="[eɪˈsɪŋkrənəs]" us="[eɪˈsɪŋkrənəs]" client:only />
+
+### 列举例句
+
+1. "Use asynchronous requests to avoid blocking the UI thread." (用异步请求避免阻塞 UI 线程。)
+2. "The framework provides asynchronous database drivers." (该框架提供异步数据库驱动。)
+3. "Race bugs are common in asynchronous code without proper locking." (缺乏适当锁的异步代码易出现竞态 bug。)
+
+### 词根分析
+
+a-（不）+ synchronous（同步的）；syn-（共同）+ chronos（时间），即“不在同一时间点发生”。
+
+### 词缀分析
+
+"a-" 否定 + "syn-" + "chron-" + "-ous" 形容词后缀。
+
+### 文化背景
+
+JavaScript 单线程事件循环以 async 为核心；Python asyncio、Rust async/await 也是主流模型。
+
+### 单词变形
+
+- 固定搭配: "asynchronous programming" (异步编程), "asynchronous I/O" (异步 I/O), "async function" (异步函数)
+- 缩写: async
+- 反义: synchronous
+
+### 记忆辅助
+
+a-sync：不同步——各干各的，不用等，asynchronous。
+
+### 助记故事
+
+"Asynchronous uploads let users keep editing while files synced in the background." (异步上传让用户在后台同步文件时仍可继续编辑。)
+
+<WordRelations
+  synonyms={["non-blocking", "async", "concurrent"]}
+  antonyms={["synchronous", "blocking"]}
+  client:only
+/>

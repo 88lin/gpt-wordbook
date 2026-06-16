@@ -1,0 +1,54 @@
+---
+title: Api
+description: API 是 Application Programming Interface 的缩写，指应用程序编程接口，定义软件组件之间的交互方式。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"API" 可以是 REST HTTP API、GraphQL、操作系统 API、库函数 API 等。通过约定输入输出，封装实现细节，使 frontend、第三方服务或微服务能安全协作。API design、versioning、documentation（OpenAPI）是工程重点。
+
+<Pronunciation word="Api" uk="[ˌeɪ piː ˈaɪ]" us="[ˌeɪ piː ˈaɪ]" client:only />
+
+### 列举例句
+
+1. "Document every public API before the partner integration launches." (合作伙伴集成上线前记录每个公开 API。)
+2. "Rate limiting protects the API from abusive traffic." (限流保护 API 免受恶意流量。)
+3. "The mobile team consumes the same backend API as the web app." (移动团队与 Web 应用共用同一后端 API。)
+
+### 词根分析
+
+缩写词：Application（应用）+ Programming（编程）+ Interface（接口）。
+
+### 词缀分析
+
+首字母缩写，无词缀；口语中常读作 A-P-I 三个字母。
+
+### 文化背景
+
+API economy 中许多公司以 API 为核心产品；breaking API change 是跨团队沟通敏感话题。
+
+### 单词变形
+
+- 固定搭配: "REST API" (REST 接口), "public API" (公开 API), "API key" (API 密钥)
+- 全称: Application Programming Interface
+- 相关: endpoint, SDK
+
+### 记忆辅助
+
+App 之间对话的 Interface——API 就是那份“对话合同”。
+
+### 助记故事
+
+"A missing field in the API response caused silent failures until contract tests were added." (API 响应缺字段导致静默失败，直到补上契约测试。)
+
+<WordRelations
+  synonyms={["interface", "contract", "endpoint set"]}
+  antonyms={["implementation detail", "black box interior"]}
+  client:only
+/>

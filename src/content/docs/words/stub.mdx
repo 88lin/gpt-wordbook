@@ -1,0 +1,53 @@
+---
+title: Stub
+description: Stub 在测试中指引用了真实对象接口的占位实现；原义为树桩、存根。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+在单元测试中，stub 提供预设返回值，隔离被测代码与外部依赖（数据库、API）。与 mock 相近，但 stub 侧重“假实现”，不一定验证调用次数。网络编程中 stub 也指客户端侧的 RPC 代理代码。
+
+<Pronunciation word="Stub" uk="[stʌb]" us="[stʌb]" client:only />
+
+### 列举例句
+
+1. "We used a stub for the payment service during unit tests." (单元测试里我们用支付服务的 stub。)
+2. "The stub always returns a fixed user profile for testing." (该 stub 在测试中固定返回一份用户资料。)
+3. "gRPC generates client stubs from the proto file." (gRPC 根据 proto 文件生成客户端 stub。)
+
+### 词根分析
+
+源自古英语 stybb（树桩），比喻“短小的替代物”；测试术语中强调简化替身。
+
+### 词缀分析
+
+该词无典型词缀；技术义为隐喻延伸。
+
+### 文化背景
+
+测试替身家族包括 stub、mock、fake、spy；Martin Fowler 等文献对细微差别有专门讨论。
+
+### 单词变形
+
+- 固定搭配: "test stub" (测试桩), "service stub" (服务桩), "stub implementation" (桩实现)
+- 相关: mock, fake, double
+
+### 记忆辅助
+
+像树桩 stub 代替完整树干，stub 代替真实依赖的“短实现”。
+
+### 助记故事
+
+"The database stub returned canned rows so the report logic could be tested offline." (数据库 stub 返回预制行，报表逻辑得以离线测试。)
+
+<WordRelations
+  synonyms={["fake", "placeholder", "double"]}
+  antonyms={["real implementation", "production service"]}
+  client:only
+/>

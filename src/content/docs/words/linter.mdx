@@ -1,0 +1,53 @@
+---
+title: Linter
+description: Linter 指代码静态分析工具，自动检查语法、风格与常见错误模式。
+sidebar:
+  hidden: true
+tableOfContents: false
+---
+
+import Pronunciation from "../../../components/Pronunciation.svelte";
+import WordRelations from "../../../components/WordRelations.svelte";
+
+### 分析词义
+
+"Linter" 是执行 lint 的程序，如 ESLint（JavaScript）、Pylint（Python）、golangci-lint（Go）。可在编辑器、保存时或 CI 中运行，输出 warning 或 error。
+
+<Pronunciation word="Linter" uk="[ˈlɪntə]" us="[ˈlɪntər]" client:only />
+
+### 列举例句
+
+1. "Configure the linter to enforce a max line length of 100." (配置 linter 强制最大行宽 100。)
+2. "The linter caught a possible null dereference before runtime." (linter 在运行前就发现了可能的空指针解引用。)
+3. "Developers can auto-fix many linter issues on save." (开发者可在保存时自动修复许多 linter 问题。)
+
+### 词根分析
+
+lint + -er，表示执行 lint 检查的工具，沿袭自早期 Unix lint 程序命名。
+
+### 词缀分析
+
+"lint" + "-er"：执行检查的工具。
+
+### 文化背景
+
+现代工程普遍将 linter 纳入 PR 检查；与 formatter（如 Prettier）分工：linter 管规则与潜在 bug，formatter 管排版。
+
+### 单词变形
+
+- 固定搭配: "linter config" (linter 配置), "linter rule" (linter 规则), "run the linter" (运行 linter)
+- 动词: lint
+
+### 记忆辅助
+
+"lint" + "er"：专门帮你找代码毛病的 er——linter。
+
+### 助记故事
+
+"The linter blocked the merge until every unused variable was removed." (linter 阻止合并，直到所有未使用变量被清除。)
+
+<WordRelations
+  synonyms={["static analyzer", "code checker", "ESLint"]}
+  antonyms={["runtime checker"]}
+  client:only
+/>
