@@ -11,6 +11,7 @@
   let latestQuery = "";
   let searchDebounceTimer = null;
   let hasOpenedModal = false;
+  let openedViaShortcut = false;
 
   const normalizeText = (value) => {
     if (typeof value !== "string") {
@@ -122,9 +123,13 @@
     }
 
     if (target.closest(".DocSearch-Button")) {
-      sendAnalyticsEvent("docsearch_open", {
-        method: "search_button",
-      });
+      if (openedViaShortcut) {
+        openedViaShortcut = false;
+      } else {
+        sendAnalyticsEvent("docsearch_open", {
+          method: "search_button",
+        });
+      }
     }
 
     onResultClick(target);
@@ -134,15 +139,74 @@
     onSearchInput(event.target);
   });
 
-  document.addEventListener("keydown", (event) => {
-    const key = event.key.toLowerCase();
-    const isShortcut = (event.metaKey || event.ctrlKey) && key === "k";
-    if (isShortcut) {
-      sendAnalyticsEvent("docsearch_open", {
-        method: "keyboard_shortcut",
-      });
+  const isEditingContent = (event) => {
+    const element = event.target;
+    if (!(element instanceof HTMLElement)) {
+      return false;
     }
-  });
+    const tagName = element.tagName;
+    return (
+      element.isContentEditable ||
+      tagName === "INPUT" ||
+      tagName === "SELECT" ||
+      tagName === "TEXTAREA"
+    );
+  };
+
+  const isSearchActive = () =>
+    document.body.classList.contains("DocSearch--active");
+
+  const getSearchButton = () => document.querySelector(".DocSearch-Button");
+
+  const openSearch = () => {
+    const button = getSearchButton();
+    if (button instanceof HTMLButtonElement && !isSearchActive()) {
+      button.click();
+    }
+  };
+
+  const closeSearch = () => {
+    if (!isSearchActive()) {
+      return;
+    }
+    window.dispatchEvent(
+      new KeyboardEvent("keydown", {
+        key: "Escape",
+        code: "Escape",
+        keyCode: 27,
+        bubbles: true,
+      })
+    );
+  };
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      const key = event.key.toLowerCase();
+      const isCmdK = (event.metaKey || event.ctrlKey) && key === "k";
+      const isSlash =
+        !isEditingContent(event) && event.key === "/" && !isSearchActive();
+
+      if (!isCmdK && !isSlash) {
+        return;
+      }
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+
+      if (isCmdK && isSearchActive()) {
+        closeSearch();
+        return;
+      }
+
+      sendAnalyticsEvent("docsearch_open", {
+        method: isCmdK ? "keyboard_shortcut" : "slash_shortcut",
+      });
+      openedViaShortcut = true;
+      openSearch();
+    },
+    true
+  );
 
   observeModalOpen();
 })();

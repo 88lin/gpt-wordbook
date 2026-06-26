@@ -165,6 +165,29 @@ h3 {
   margin-right: 50px;
 }
 
+@media (min-width: 50rem) {
+  .page .header .DocSearch-Button-Keys::before {
+    display: none;
+  }
+
+  .page .header .DocSearch-Button-Keys {
+    gap: 0.25em;
+    align-items: center;
+  }
+
+  .page .header .DocSearch-Button-Key {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.25rem;
+    font-family: var(--__sl-font);
+    font-size: var(--sl-text-2xs);
+    min-width: 1.25em;
+    padding-inline: 0.375rem;
+    background-color: var(--sl-color-gray-6);
+  }
+}
+
 /* 侧边栏优化 - 参照 AlphabetIndex 风格 */
 #starlight__sidebar {
   padding-top: 1rem;
