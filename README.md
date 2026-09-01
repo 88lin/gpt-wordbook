@@ -324,6 +324,23 @@ pnpm build
 
 [![Star History Chart](https://api.star-history.com/svg?repos=nicejade/gpt-wordbook&type=Date)](https://star-history.com/#nicejade/gpt-wordbook&Date)
 
+## 相关链接
+
+- [清风明月轩](https://www.lovejade.cn/?ref=github.com)
+- [逍遥自在轩](https://www.niceshare.site/?ref=github.com)
+- [晚晴幽草轩](https://www.jeffjade.com/nicelinks?ref=github.com)
+- [慧悟万象阁](https://meta.niceshare.site/?ref=github.com)
+- [逸趣游乐坊](https://play.niceshare.site/?ref=github.com)
+- [蓝河文档馆](https://blueos.niceshare.site/?ref=github.com)
+- [玉桃文飨轩](https://share.lovejade.cn/?ref=github.com)
+- [缘知随心庭](https://fine.niceshare.site/?ref=github.com)
+- [静轩之别苑](https://quickapp.lovejade.cn/?ref=github.com)
+- [悠然宜想亭](https://forum.lovejade.cn/?ref=github.com)
+- [SegmentFault](https://segmentfault.com/u/jeffjade)
+- [X（MarshalXuan）](https://x.com/MarshalXuan)
+- [FaceBook（MarshalXuan）](https://www.facebook.com/MarshalXuan/)
+- [@MarshalXuan](https://www.youtube.com/@MarshalXuan)
+
 ## 🙏 特别致谢
 
 本项目受益于以下优秀的开源技术和社区：
